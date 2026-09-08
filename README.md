@@ -1,6 +1,6 @@
 # 🏎️ Pipeline F1 & Tableau de Bord (Modern Data Stack)
 
-**[ Voir le tableau de bord interactif Streamlit en ligne](https://f1project-lwpry5yajdlmzppgnjhqts.streamlit.app/)**
+**[ Voir le tableau de bord interactif Streamlit en ligne](https://f1project-lwpry5yajdlmzppgnjhqtl.streamlit.app/)**
 
 ## À propos du projet
 Ce projet est une architecture Data Engineering "de bout en bout" (End-to-End) 100% cloud-native. L'objectif est d'extraire des données sur la Formule 1 depuis une API externe, de les nettoyer, de les transformer de manière automatisée, et de les exposer via une application web publique. 
