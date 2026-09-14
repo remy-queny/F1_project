@@ -8,7 +8,7 @@ from azure.storage.blob import BlobServiceClient
 app = func.FunctionApp()
 
 # Le Declencheur (Tous les jours à 2h00)
-@app.timer_trigger(schedule="0 0 2 * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False) 
+@app.timer_trigger(schedule="0 0 2 * * *", arg_name="myTimer", run_on_startup=True, use_monitor=False) 
 def IngestF1Data(myTimer: func.TimerRequest) -> None:
     logging.info('--- Demarrage du pipeline d\'ingestion F1 ---')
 
