@@ -32,7 +32,7 @@ def IngestF1Data(myTimer: func.TimerRequest) -> None:
 
         # CHARGEMENT (Azure Blob Storage)
         logging.info("3. Envoi vers le Data Lake Azure...")
-        connection_string = os.environ.get("AZURE_CONNECTION_STRING")
+        connection_string = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
         if not connection_string:
             raise ValueError("La chaine de connexion Azure est introuvable !")
 
