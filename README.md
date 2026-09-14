@@ -5,7 +5,7 @@
 ## À propos du projet
 Ce projet est une architecture Data Engineering "de bout en bout" (End-to-End) 100% cloud-native. L'objectif est d'extraire des données sur la Formule 1 depuis une API externe, de les nettoyer, de les transformer de manière automatisée, et de les exposer via une application web publique. 
 
-Il démontre la mise en place d'une **architecture Medallion** rigoureuse, associée à des pratiques CI/CD modernes.
+Il démontre la mise en place d'une **architecture Medallion** rigoureuse, associée à des pratiques CI/CD.
 
 ---
 
