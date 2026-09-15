@@ -17,4 +17,4 @@ SELECT
     TRY_CAST(dateOfBirth AS DATE) AS date_naissance,
     CAST(nationality AS VARCHAR) AS nationalite
 FROM source_data
-WHERE driverID IS NOT NULL AND permanentNumber IS NOT NULL
+WHERE driverId IS NOT NULL AND permanentNumber IS NOT NULL
