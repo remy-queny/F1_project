@@ -16,12 +16,16 @@ def IngestF1Data(myTimer: func.TimerRequest) -> None:
     try:
         # EXTRACTION
         logging.info("1. Appel de l'API OpenF1...")
-        url = "https://api.openf1.org/v1/drivers?session_key=latest"
-        response = requests.get(url)
-        response.raise_for_status() 
-        
+        url = "https://api.jolpi.ca/ergast/f1/current/drivers.json"
+
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+
         data = response.json()
-        df_drivers = pd.DataFrame(data)
+
+        liste_pilote = data["MRData"]["DriverTable"]["Drivers"]
+
+        df_drivers = pd.DataFrame(liste_pilote)
         logging.info(f"-> Succes : {len(df_drivers)} pilotes recuperes.")
 
         # TRANSFORMATION (Parquet)
