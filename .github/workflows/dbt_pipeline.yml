@@ -37,6 +37,51 @@ jobs:
       
       - name: Installer les dependances
         run: pip install -r requirements.txt
+      
+      - name: Diagnostiquer le Parquet Bronze Azure
+        run: |
+          python - <<'PY'
+          import io
+          import os
+
+          import pyarrow.parquet as pq
+          from azure.storage.blob import BlobServiceClient
+
+          connection_string = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
+
+          blob_service_client = BlobServiceClient.from_connection_string(
+              connection_string
+          )
+
+          blob_client = blob_service_client.get_blob_client(
+              container="bronze",
+              blob="drivers/drivers_latest.parquet"
+          )
+
+          properties = blob_client.get_blob_properties()
+
+          print("=== BLOB BRONZE AZURE ===")
+          print(f"Nom : {blob_client.blob_name}")
+          print(f"Taille : {properties.size} octets")
+          print(f"Dernière modification : {properties.last_modified}")
+          print(f"ETag : {properties.etag}")
+
+          parquet_bytes = blob_client.download_blob().readall()
+
+          parquet_file = pq.ParquetFile(io.BytesIO(parquet_bytes))
+
+          print("\n=== SCHÉMA PARQUET ===")
+          print(parquet_file.schema_arrow)
+
+          table = parquet_file.read()
+          dataframe = table.to_pandas()
+
+          print("\n=== COLONNES ===")
+          print(dataframe.columns.tolist())
+
+          print("\n=== 5 PREMIÈRES LIGNES ===")
+          print(dataframe.head().to_string(index=False))
+          PY
 
       - name: Verifier la configuration dbt
         working-directory: ./f1_transform
